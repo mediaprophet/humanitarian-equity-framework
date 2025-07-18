@@ -1,0 +1,40 @@
+@prefix rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# .
+@prefix rdfs: http://www.w3.org/2000/01/rdf-schema# .
+@prefix odrl: http://www.w3.org/ns/odrl/2/ .
+@prefix dc: http://purl.org/dc/elements/1.1/ .
+@prefix schema: http://schema.org/ .
+@prefix : http://example.org/humanitarian-equity-framework/ontology/project-rules# .
+
+:UsefulWork rdf:type rdfs:Class ;
+rdfs:label "Useful Work" ;
+rdfs:comment "Class representing contributions deemed useful based on defined criteria." ;
+rdfs:subClassOf schema:CreativeWork .
+
+:UsefulWorkCriterion rdf:type rdfs:Class ;
+rdfs:label "Useful Work Criterion" ;
+rdfs:comment "Criteria for evaluating if a contribution is useful work." ;
+rdfs:subClassOf odrl:Constraint .
+
+:hasRelevanceToHumanitarianGoals rdf:type rdf:Property ;
+rdfs:label "Has Relevance to Humanitarian Goals" ;
+rdfs:comment "Indicates the relevance of the work to humanitarian objectives." ;
+rdfs:domain :UsefulWorkCriterion ;
+rdfs:range rdfs:Literal .
+
+:hasTechnicalMerit rdf:type rdf:Property ;
+rdfs:label "Has Technical Merit" ;
+rdfs:comment "Evaluates the technical quality and innovation of the contribution." ;
+rdfs:domain :UsefulWorkCriterion ;
+rdfs:range rdfs:Literal .
+
+:alignmentWithProjectObjectives rdf:type rdf:Property ;
+rdfs:label "Alignment with Project Objectives" ;
+rdfs:comment "Measures how well the contribution aligns with project goals." ;
+rdfs:domain :UsefulWorkCriterion ;
+rdfs:range rdfs:Literal .
+
+:nonDuplicativeEffort rdf:type rdf:Property ;
+rdfs:label "Non-Duplicative Effort" ;
+rdfs:comment "Ensures the contribution does not duplicate existing work." ;
+rdfs:domain :UsefulWorkCriterion ;
+rdfs:range rdfs:Literal .

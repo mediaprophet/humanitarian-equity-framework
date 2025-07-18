@@ -1,0 +1,87 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix : <http://mediaprophet.github.io/humanitarian-equity-framework/ontology/licenseontology.ttl#> .
+
+# NOTE: This RDF representation is an EXAMPLE ONLY and not intended for production use without legal review and customization.
+
+:HumanitarianEquityLicense rdf:type :CustomReservedLicense ;
+    dc:title "All Rights Reserved, Pending Compensatory Implementation" ;
+    :version "0.001-init" ;
+    :date "July 19, 2025" ;
+    :appliesToWork :HumanitarianICTWork ;
+    :hasLicensor :DefaultLicensor ;
+    :hasPreamble :LicensePreamble ;
+    :hasCopyrightSection :LicenseCopyright ;
+    :hasOpenDevelopmentSection :LicenseOpenDev ;
+    :hasObligationCostsSection :LicenseObligationCosts ;
+    :hasCompensatoryImplementationSection :LicenseCompensatory ;
+    :hasExemptionsSection :LicenseExemptions ;
+    :hasMetadataSection :LicenseMetadata ;
+    :hasNoWarrantySection :LicenseNoWarranty ;
+    :hasGoverningLawSection :LicenseGoverningLaw ;
+    odrl:permission [
+        rdf:type odrl:Permission ;
+        odrl:action odrl:read ;
+        odrl:constraint [ 
+            rdf:type odrl:Constraint ;
+            odrl:purpose "inspection" 
+        ] 
+    ] ;
+    odrl:prohibition [
+        rdf:type odrl:Prohibition ;
+        odrl:action odrl:distribute, odrl:derive, odrl:use ;
+        odrl:constraint [ 
+            rdf:type odrl:Constraint ;
+            odrl:precondition "compensation system not operational" 
+        ] 
+    ] ;
+    odrl:duty [
+        rdf:type odrl:Duty ;
+        odrl:action :implementCompensation ;
+        odrl:consequence [ 
+            rdf:type odrl:Consequence ;
+            odrl:assigner "release to permissive license" 
+        ] 
+    ] ;
+    rdfs:comment "RDF representation of the custom license for the Humanitarian Equity Framework." .
+
+:HumanitarianICTWork rdf:type :Work ;
+    schema:description "Humanitarian ICT systems, projects, works, and ecosystems." .
+
+:DefaultLicensor rdf:type :Licensor ;
+    foaf:name "[Your Name/Organization Name]" .
+
+:LicensePreamble rdf:type :Preamble ;
+    :intent "To define, track, and compensate costs for humanitarian ICT production." ;
+    :principles "Fair compensation, alignment with human rights, transition to open-source after compensation." .
+
+:LicenseCopyright rdf:type :CopyrightSection ;
+    rdfs:comment "All rights reserved; no grants beyond explicit." .
+
+:LicenseOpenDev rdf:type :OpenDevelopmentSection ;
+    rdfs:comment "Limited inspection rights; no redistribution or commercial use without compensation. Contributions accepted only if 'useful work' per PROJECT_RULES.rdf." .
+
+:LicenseObligationCosts rdf:type :ObligationCostsSection ;
+    rdfs:comment "Defines direct/indirect costs, compound multipliers for unpaid contributions." .
+
+:LicenseCompensatory rdf:type :CompensatoryImplementationSection ;
+    rdfs:comment "Blockchain-based system, release criteria (e.g., 80% fulfillment of Obligation Costs)." .
+
+:LicenseExemptions rdf:type :ExemptionsSection ;
+    rdfs:comment "Exemptions for open standards compliance, non-exploitative use aligned with human rights." .
+
+:LicenseMetadata rdf:type :MetadataSection ;
+    rdfs:comment "Metadata files for costs, claims (via CLAIMS_PROCEDURE.rdf), RDF integration for attribution." .
+
+:LicenseNoWarranty rdf:type :NoWarrantySection ;
+    rdfs:comment "As-is, no warranties, disclaimer of liability." .
+
+:LicenseGoverningLaw rdf:type :GoverningLawSection ;
+    rdfs:comment "Contributor-elected jurisdictions, default to international law, alignment with human rights instruments." .

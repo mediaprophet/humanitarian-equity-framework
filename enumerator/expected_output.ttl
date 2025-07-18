@@ -1,0 +1,29 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix hef: <http://mediaprophet.github.io/humanitarian-equity-framework/ontology/contributors#> .
+
+:Contributor1 rdf:type hef:Contributor ;
+    foaf:name "Timothy Holborn" ;
+    foaf:mbox "timothy.holborn@gmail.com" ;
+    hef:jurisdiction "Australia" ;
+    hef:hasContribution :Contribution1 .
+
+:Contribution1 rdf:type hef:Contribution ;
+    prov:generatedAtTime "2025-07-18T15:37:16.524080" ;
+    schema:description "Initial framework definition" ;
+    schema:value 1000.0 .
+
+:Contributor2 rdf:type hef:Contributor ;
+    foaf:name "Example Contributor" ;
+    foaf:mbox "example@example.com" ;
+    hef:jurisdiction "" ;
+    hef:hasContribution :Contribution2 .
+
+:Contribution2 rdf:type hef:Contribution ;
+    prov:generatedAtTime "2025-07-18T15:37:16.524106" ;
+    schema:description "RDF ontology development" ;
+    schema:value 500.0 .

@@ -1,0 +1,59 @@
+LICENSE - All Rights Reserved, Pending Compensatory Implementation
+Version: 0.001-init
+Date: July 19, 2025
+
+Preamble: Project Intent & Core Principles
+This project ("the Work") aims to define, track, and compensate costs associated with the production of Humanitarian Information and Communications Technology (ICT) systems, projects, works, and ecosystems. Contributions to the Work may come from multiple agents, including individuals, organizations, or automated systems, and involve resources such as time, energy, expertise, data, and computational infrastructure. A core principle is that all such contributions deserve fair, equitable, and timely compensation to ensure sustainability and ethical development.
+
+This license is a placeholder reflecting a commitment to establishing robust mechanisms for compensation before granting broad open access. Unlike traditional open-source licenses, this is an evolving model designed to address the long-term viability of collaborative technology development, particularly in humanitarian contexts. The ultimate goal is to create a system where contributors are rewarded proportionally to their inputs, and once that system is operational, the Work will transition to a permissive open-source license. All terms herein are intended to align with and uphold international Human Rights Legal Instruments, including but not limited to the Universal Declaration of Human Rights and related conventions, ensuring that the Work promotes dignity, fairness, and non-exploitation.
+
+1. Copyright & All Rights Reserved
+Copyright in and to the Work (including source code, documentation, designs, data, and all related materials) is presently held by [Your Name/Organization Name] ("the Licensor") and is fully reserved. No rights are granted beyond those explicitly stated herein. Without express written permission from the Licensor, you may not copy, modify, distribute, publish, sublicense, create derivative works from, or otherwise use the Work in any manner.
+
+2. Open Development & Limited Rights
+To foster transparency, community engagement, and collaborative refinement, the Work is developed openly. However, access is restricted to prevent uncompensated exploitation. The source code and related materials are made available under the following limited conditions:
+
+Inspection and Analysis Rights: You are granted a non-exclusive, revocable, limited right to inspect, analyze, and understand the Work's functionality, implementation, and potential applications for non-commercial, educational, or review purposes only.
+No Redistribution: You may not redistribute, share, or transmit the Work (in whole or in part) to any third party without first verifying that a functional compensatory system, as defined in Section 4, is in place and operational.
+No Commercial or Derivative Use: You may not use the Work for commercial purposes, create derivative works, integrate it into other projects, or deploy it in any production environment without first establishing a functional compensatory system as defined in Section 4.
+Reporting Obligations: If you identify improvements, bugs, or potential contributions during inspection, you are encouraged (but not required) to report them to the Licensor via the project's designated channels, with any such reports subject to the compensation principles outlined herein.
+Contributions Acceptance: Contributions to the Work are only accepted if they are deemed "useful work" by the Licensor or through the governance mechanism (once established). The definition of "useful work" is outlined via enumerated processes in the version-controlled project rules file (PROJECT_RULES.rdf), which uses Resource Description Framework (RDF) to semantically define criteria such as relevance to humanitarian goals, technical merit, alignment with project objectives, and non-duplicative effort. Submissions not meeting these criteria will be rejected, and no compensation claims will be entertained for non-accepted contributions.
+3. Obligation Costs & Unpaid Contributions
+The "Obligation Costs" of the Work represent the aggregated value of all resources contributed to its development, with a focus on ensuring compensation for unpaid or undercompensated efforts. This includes:
+
+Direct Costs: Tangible expenses incurred in project development, such as hardware, software licenses, hosting fees, or third-party services.
+Indirect Costs: The fair market value of intangible contributions, including time, intellectual effort, and expertise provided by contributors. Valuations will be based on reasonable industry standards, contributor-elected rates, or mutually agreed metrics, and are subject to periodic review and adjustment.
+Compound Multiplier: For contributions that remain uncompensated beyond a defined period (e.g., 6 months from contribution date), a compound multiplier may be applied to account for opportunity costs, inflation, and delayed gratification. The multiplier formula (e.g., annual rate of 5% compounded quarterly) will be transparently documented in the project's metadata, with adjustments made via the governance mechanism in Section 4.
+Obligation Costs will be tracked in a verifiable, auditable manner, prioritizing equity and proportionality.
+
+4. Compensatory Implementation & Release Criteria
+The Licensor is committed to implementing a blockchain-based compensatory system (initially focused on Bitcoin-ABC (XEC), but extensible to other technologies) to automate and ensure fair distribution. Key elements include:
+
+Micropayments and Tokenization: Automated micro-transactions or tokenized rewards distributed to contributors based on verified inputs, using cryptocurrencies or digital assets.
+Semantic Contracts and RDF Integration: Smart contracts enhanced with Resource Description Framework (RDF) for sophisticated attribution, license interoperability, and handling of external components (e.g., linking to contributor credits in upstream projects).
+Attribution and Interoperability: The system will use RDF to manage attributions across ecosystems, ensuring compatibility with licenses of incorporated components and crediting original contributors proportionally.
+The Work will transition to a more permissive open-source license (e.g., MIT, Apache 2.0, or a custom humanitarian-focused variant) only after the following verifiable milestones are achieved:
+
+Operational Compensation System: A blockchain-integrated system is fully implemented, tested, and capable of accurately tracking contributions, calculating Obligation Costs, and distributing compensation in a decentralized, tamper-resistant manner.
+Obligation Fulfillment Threshold: At least 80% of accumulated Obligation Costs must be fulfilled through the system, with the remainder addressed via an ongoing, self-sustaining funding model (e.g., transaction fees or endowments integrated into the blockchain).
+Governance Framework: A decentralized, transparent governance mechanism is established, potentially using DAOs (Decentralized Autonomous Organizations) or similar structures, to oversee contribution valuations, dispute resolution, rate adjustments, and system updates. This framework will prioritize inclusivity, accessibility, and alignment with human rights principles.
+Progress toward these criteria will be publicly documented and auditable.
+
+5. Exemptions for Standards Compliance
+To support interoperability and foundational humanitarian goals, an exemption is granted for the use of the Work in conjunction with open, royalty-free, patent-pool-supported standards endorsed by major Internet Governance bodies (e.g., W3C, IETF, IEEE). This exemption applies solely for the purpose of implementing or advancing such standards, provided that:
+
+The use is not contemptuous, dishonorable, or exploitative.
+It does not violate the intents and purposes of Human Rights Legal Instruments, including prohibitions on discrimination, exploitation, or harm to vulnerable populations.
+Full attribution is maintained, and any derivative standards work references this license and its compensatory principles.
+This exemption does not extend to commercial exploitation or redistribution outside the standards context without fulfilling Section 4 requirements.
+
+6. Metadata & Documentation
+All details on Obligation Costs, compensatory mechanisms, multipliers, attributions, and RDF schemas will be maintained in dedicated, version-controlled files (e.g., CONTRIBUTORS.rdf, COST_MODEL.json, COMPENSATION_PLAN.md). These will use Linked Data formats to enable semantic querying, interoperability with external licenses, and automated attribution chains. Contributors may elect to include personal metadata (e.g., preferred compensation methods or jurisdiction details) in these files.
+
+Additionally, a version-controlled file (CLAIMS_PROCEDURE.md) outlines the means for making claims in relation to contributed work. This file details the process for submitting claims, including required documentation (e.g., proof of contribution, valuation evidence), timelines for review, dispute resolution pathways, and integration with the compensatory system. Claims are only valid for accepted contributions deemed "useful work" per the PROJECT_RULES.rdf file. The claims procedure emphasizes fairness, transparency, and alignment with RDF-based tracking for automated verification where possible.
+
+7. No Warranty & Disclaimer of Liability
+The Work is provided "as is," without warranty of any kind, express, implied, or statutory, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement. The Licensor disclaims all liability for any damages, losses, or claims arising from inspection, analysis, or any other use of the Work, to the fullest extent permitted by applicable law.
+
+8. Governing Law & Jurisdiction
+This license shall be governed by and construed in accordance with the laws of the jurisdiction elected by each contributor for their specific contributions, as documented in the project's metadata. For the Work as a whole or in cases of dispute involving multiple contributors, the governing law shall default to [Your Jurisdiction, e.g., International Law under the United Nations framework], with consideration given to the elected laws of affected parties. Any competent tribunal shall prioritize interpretations that align with Human Rights Legal Instruments and principles of equity. Disputes may be resolved through arbitration under mutually agreed rules (e.g., UNCITRAL) to accommodate international collaboration.

@@ -1,0 +1,40 @@
+@prefix rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# .
+@prefix rdfs: http://www.w3.org/2000/01/rdf-schema# .
+@prefix odrl: http://www.w3.org/ns/odrl/2/ .
+@prefix dc: http://purl.org/dc/elements/1.1/ .
+@prefix schema: http://schema.org/ .
+@prefix : http://example.org/humanitarian-equity-framework/ontology/claims-procedure# .
+
+:ClaimProcess rdf:type rdfs:Class ;
+rdfs:label "Claim Process" ;
+rdfs:comment "Class defining the procedure for submitting and processing claims on contributions." ;
+rdfs:subClassOf odrl:Policy .
+
+:ClaimSubmission rdf:type rdfs:Class ;
+rdfs:label "Claim Submission" ;
+rdfs:comment "Step for submitting a claim." ;
+rdfs:subClassOf schema:Action .
+
+:requiredDocumentation rdf:type rdf:Property ;
+rdfs:label "Required Documentation" ;
+rdfs:comment "Documents needed for a claim, e.g., proof of contribution." ;
+rdfs:domain :ClaimSubmission ;
+rdfs:range rdfs:Resource .
+
+:valuationEvidence rdf:type rdf:Property ;
+rdfs:label "Valuation Evidence" ;
+rdfs:comment "Evidence supporting the value of the contribution." ;
+rdfs:domain :ClaimSubmission ;
+rdfs:range rdfs:Resource .
+
+:reviewTimeline rdf:type rdf:Property ;
+rdfs:label "Review Timeline" ;
+rdfs:comment "Timeline for reviewing the claim." ;
+rdfs:domain :ClaimProcess ;
+rdfs:range rdfs:Literal .
+
+:disputeResolution rdf:type rdf:Property ;
+rdfs:label "Dispute Resolution" ;
+rdfs:comment "Pathways for resolving disputes in claims." ;
+rdfs:domain :ClaimProcess ;
+rdfs:range odrl:Duty .

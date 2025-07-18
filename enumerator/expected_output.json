@@ -1,0 +1,24 @@
+[
+    {
+        "claim_id": "b04bd8dc-2053-4e52-934a-421fd014a856",
+        "contributor": {
+            "name": "Timothy Holborn",
+            "email": "timothy.holborn@gmail.com",
+            "jurisdiction": "Australia"
+        },
+        "description": "Initial framework definition",
+        "value": 1000.0,
+        "date": "2025-07-18T15:37:16.524080"
+    },
+    {
+        "claim_id": "91746197-f97c-4e63-80c2-44bd712121bf",
+        "contributor": {
+            "name": "Example Contributor",
+            "email": "example@example.com",
+            "jurisdiction": null
+        },
+        "description": "RDF ontology development",
+        "value": 500.0,
+        "date": "2025-07-18T15:37:16.524106"
+    }
+]

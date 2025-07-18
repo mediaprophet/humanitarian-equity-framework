@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Humanitarian Equity Framework Specification</title>
+    <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"></script>
+    <script class="remove">
+        var respecConfig = {
+            specStatus: "unofficial",
+            shortName: "humanitarian-equity-framework",
+            editors: [{
+                name: "Timothy Holborn",
+                mailto: "timothy.holborn@gmail.com",
+                company: "Web Civics",
+                url: "https://github.com/mediaprophet"
+            }],
+            github: "https://github.com/mediaprophet/humanitarian-equity-framework",
+            license: "cc-by",
+            group: "Web Civics",
+            wg: "Web Civics",
+            wgURI: "https://webcivics.org/",
+            wgPublicList: "public-webcivics",
+            wgPatentURI: "",
+            publishDate: "2025-07-19",
+            edDraftURI: "https://mediaprophet.github.io/humanitarian-equity-framework/spec/",
+            noRecTrack: true,
+            overrideCopyright: "<p class='copyright'>This document is licensed under a <a rel='license' href='https://creativecommons.org/licenses/by/4.0/'>Creative Commons Attribution 4.0 International License</a>.</p>",
+            localBiblio: {
+                "RDF": {
+                    "title": "Resource Description Framework (RDF)",
+                    "href": "https://www.w3.org/RDF/",
+                    "publisher": "W3C"
+                },
+                "ODRL": {
+                    "title": "Open Digital Rights Language (ODRL)",
+                    "href": "https://www.w3.org/TR/odrl-model/",
+                    "publisher": "W3C"
+                },
+                "FOAF": {
+                    "title": "Friend of a Friend (FOAF)",
+                    "href": "http://xmlns.com/foaf/spec/",
+                    "publisher": "FOAF Project"
+                },
+                "SCHEMA": {
+                    "title": "Schema.org",
+                    "href": "https://schema.org/",
+                    "publisher": "Schema.org Community"
+                },
+                "DC": {
+                    "title": "Dublin Core Metadata Initiative",
+                    "href": "https://www.dublincore.org/",
+                    "publisher": "DCMI"
+                },
+                "PROV": {
+                    "title": "PROV-O: The PROV Ontology",
+                    "href": "https://www.w3.org/TR/prov-o/",
+                    "publisher": "W3C"
+                }
+            }
+        };
+    </script>
+    <style>
+        /* Custom styles for Web Civics branding */
+        body { font-family: Arial, sans-serif; }
+        header { background-color: #f0f0f0; padding: 10px; }
+        .head { text-align: center; }
+        .head h1 { color: #333; }
+        .note { background-color: #fffacd; padding: 10px; border-left: 5px solid #ffd700; }
+    </style>
+</head>
+<body>
+    <section id="abstract">
+        <h2>Abstract</h2>
+        <p>This document specifies the Humanitarian Equity Framework, a system for tracking, attributing, and compensating contributions to humanitarian Information and Communications Technology (ICT) projects. It enables transparent code inspectability while reserving rights until a sustainable compensation system is implemented, ensuring fair rewards aligned with human rights principles.</p>
+    </section>
+
+    <section id="sotd">
+        <h2>Status of This Document</h2>
+        <p class="note">This is an unofficial draft specification produced by Web Civics. It is not endorsed by any standards body and is intended for discussion and refinement. Feedback is welcome via the GitHub repository.</p>
+        <p>Version: 0.001-init</p>
+        <p>Date: July 19, 2025</p>
+    </section>
+
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>The Humanitarian Equity Framework addresses the need for fair compensation in collaborative humanitarian ICT development. It distinguishes between open-source inspectability for transparency and the prevention of uncompensated labor, promoting sustainability and ethical practices.</p>
+        <p>This specification defines ontologies, processes, and licensing mechanisms using RDF, ODRL, and related vocabularies.</p>
+    </section>
+
+    <section id="conformance">
+        <h2>Conformance</h2>
+        <p>As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.</p>
+        <p>The key words MAY, MUST, MUST NOT, OPTIONAL, RECOMMENDED, REQUIRED, SHALL, SHALL NOT, SHOULD, and SHOULD NOT in this document are to be interpreted as described in BCP 14 [<a href="https://tools.ietf.org/html/rfc2119">RFC2119</a>] and [<a href="https://tools.ietf.org/html/rfc8174">RFC8174</a>] when, and only when, they appear in all capitals, as shown here.</p>
+    </section>
+
+    <section id="ontologies">
+        <h2>Ontologies</h2>
+        <p>This framework defines several RDF ontologies for managing project rules, claims procedures, contributors, cost models, and licenses.</p>
+
+        <section id="project-rules">
+            <h3>Project Rules Ontology</h3>
+            <p>Defines criteria for "useful work" using RDFS classes like UsefulWork and properties like hasRelevanceToHumanitarianGoals.</p>
+            <pre class="example" title="Example Turtle Snippet">
+@prefix : &lt;http://mediaprophet.github.io/humanitarian-equity-framework/ontology/project-rules#&gt; .
+:UsefulWork rdf:type rdfs:Class .
+            </pre>
+        </section>
+
+        <section id="claims-procedure">
+            <h3>Claims Procedure Ontology</h3>
+            <p>Outlines processes for submitting and approving claims, with classes like ClaimProcess.</p>
+        </section>
+
+        <section id="contributors">
+            <h3>Contributors Ontology</h3>
+            <p>Models contributors and their contributions using FOAF and PROV.</p>
+        </section>
+
+        <section id="cost-model">
+            <h3>Cost Model Ontology</h3>
+            <p>Defines obligation costs with classes like DirectCost and IndirectCost.</p>
+        </section>
+
+        <section id="license-ontology">
+            <h3>License Ontology</h3>
+            <p>Represents the custom license in RDF, using ODRL for permissions and prohibitions.</p>
+            <pre class="example" title="Example License Instance">
+:HumanitarianEquityLicense rdf:type :CustomReservedLicense ;
+    dc:title "All Rights Reserved, Pending Compensatory Implementation" .
+            </pre>
+        </section>
+    </section>
+
+    <section id="licensing">
+        <h2>Licensing Mechanism</h2>
+        <p>The framework uses a placeholder license that reserves rights until compensation criteria are met, then transitions to a permissive license.</p>
+        <p>Key sections include preamble, copyright reservations, limited rights, obligation costs, compensatory implementation, exemptions, metadata, no warranty, and governing law.</p>
+    </section>
+
+    <section id="implementation">
+        <h2>Implementation Considerations</h2>
+        <p>Implementations SHOULD use blockchain for compensation and RDF for attribution. Contributions require approval via agreements, with pending status until approved.</p>
+    </section>
+
+    <section id="references">
+        <h2>References</h2>
+        <section id="normative-references">
+            <h3>Normative References</h3>
+            <dl>
+                <dt>[RDF]</dt>
+                <dd>Resource Description Framework (RDF). W3C.</dd>
+                <dt>[ODRL]</dt>
+                <dd>Open Digital Rights Language (ODRL). W3C.</dd>
+            </dl>
+        </section>
+        <section id="informative-references">
+            <h3>Informative References</h3>
+            <dl>
+                <dt>[FOAF]</dt>
+                <dd>Friend of a Friend (FOAF). FOAF Project.</dd>
+                <dt>[SCHEMA]</dt>
+                <dd>Schema.org. Schema.org Community.</dd>
+                <dt>[DC]</dt>
+                <dd>Dublin Core Metadata Initiative. DCMI.</dd>
+                <dt>[PROV]</dt>
+                <dd>PROV-O: The PROV Ontology. W3C.</dd>
+            </dl>
+        </section>
+    </section>
+
+    <section id="acknowledgements">
+        <h2>Acknowledgements</h2>
+        <p>Thanks to contributors and the open web community for inspirations in fair and equitable technology development.</p>
+    </section>
+</body>
+</html>

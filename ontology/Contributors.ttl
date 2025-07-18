@@ -1,0 +1,35 @@
+@prefix rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# .
+@prefix rdfs: http://www.w3.org/2000/01/rdf-schema# .
+@prefix foaf: http://xmlns.com/foaf/0.1/ .
+@prefix dc: http://purl.org/dc/elements/1.1/ .
+@prefix schema: http://schema.org/ .
+@prefix prov: http://www.w3.org/ns/prov# .
+@prefix : http://example.org/humanitarian-equity-framework/ontology/contributors# .
+
+:Contributor rdf:type rdfs:Class ;
+rdfs:label "Contributor" ;
+rdfs:comment "Class for individuals or organizations contributing to the project." ;
+rdfs:subClassOf foaf:Agent, prov:Agent .
+
+:Contribution rdf:type rdfs:Class ;
+rdfs:label "Contribution" ;
+rdfs:comment "Specific contribution made by a contributor." ;
+rdfs:subClassOf prov:Entity .
+
+:hasContribution rdf:type rdf:Property ;
+rdfs:label "Has Contribution" ;
+rdfs:comment "Links a contributor to their contributions." ;
+rdfs:domain :Contributor ;
+rdfs:range :Contribution .
+
+:preferredCompensationMethod rdf:type rdf:Property ;
+rdfs:label "Preferred Compensation Method" ;
+rdfs:comment "Contributor's preferred method for receiving compensation." ;
+rdfs:domain :Contributor ;
+rdfs:range rdfs:Literal .
+
+:jurisdiction rdf:type rdf:Property ;
+rdfs:label "Jurisdiction" ;
+rdfs:comment "Legal jurisdiction elected by the contributor." ;
+rdfs:domain :Contributor ;
+rdfs:range rdfs:Literal .

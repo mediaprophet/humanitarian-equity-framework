@@ -1,0 +1,238 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix : <http://example.org/humanitarian-equity-framework/ontology/license#> .
+
+# Ontology Classes
+
+:License rdf:type owl:Class ;
+    rdfs:label "License" ;
+    rdfs:comment "Class representing a software or project license." ;
+    rdfs:subClassOf odrl:Policy .
+
+:CustomReservedLicense rdf:type owl:Class ;
+    rdfs:label "Custom Reserved License" ;
+    rdfs:comment "Subclass for licenses that reserve rights pending conditions, like compensatory implementation." ;
+    rdfs:subClassOf :License .
+
+:Preamble rdf:type owl:Class ;
+    rdfs:label "Preamble" ;
+    rdfs:comment "Introductory section outlining intent and principles." ;
+    rdfs:subClassOf dct:Abstract .
+
+:CopyrightSection rdf:type owl:Class ;
+    rdfs:label "Copyright Section" ;
+    rdfs:comment "Section detailing copyright reservations." ;
+    rdfs:subClassOf odrl:Permission .
+
+:OpenDevelopmentSection rdf:type owl:Class ;
+    rdfs:label "Open Development Section" ;
+    rdfs:comment "Section on limited rights for inspection and contributions." ;
+    rdfs:subClassOf odrl:Permission .
+
+:ObligationCostsSection rdf:type owl:Class ;
+    rdfs:label "Obligation Costs Section" ;
+    rdfs:comment "Section defining costs and unpaid contributions." ;
+    rdfs:subClassOf odrl:Duty .
+
+:CompensatoryImplementationSection rdf:type owl:Class ;
+    rdfs:label "Compensatory Implementation Section" ;
+    rdfs:comment "Section on compensation system and release criteria." ;
+    rdfs:subClassOf odrl:Constraint .
+
+:ExemptionsSection rdf:type owl:Class ;
+    rdfs:label "Exemptions Section" ;
+    rdfs:comment "Section for exemptions, e.g., standards compliance." ;
+    rdfs:subClassOf odrl:Permission .
+
+:MetadataSection rdf:type owl:Class ;
+    rdfs:label "Metadata Section" ;
+    rdfs:comment "Section on metadata and documentation." ;
+    rdfs:subClassOf prov:Plan .
+
+:NoWarrantySection rdf:type owl:Class ;
+    rdfs:label "No Warranty Section" ;
+    rdfs:comment "Disclaimer of warranties and liabilities." ;
+    rdfs:subClassOf odrl:Prohibition .
+
+:GoverningLawSection rdf:type owl:Class ;
+    rdfs:label "Governing Law Section" ;
+    rdfs:comment "Section on governing law and jurisdiction." ;
+    rdfs:subClassOf odrl:Policy .
+
+:Work rdf:type owl:Class ;
+    rdfs:label "Work" ;
+    rdfs:comment "The project or artifact under the license." ;
+    rdfs:subClassOf schema:CreativeWork .
+
+:Licensor rdf:type owl:Class ;
+    rdfs:label "Licensor" ;
+    rdfs:comment "Entity holding the copyright." ;
+    rdfs:subClassOf foaf:Agent .
+
+:ObligationCost rdf:type owl:Class ;
+    rdfs:label "Obligation Cost" ;
+    rdfs:comment "Aggregated value of contributions." ;
+    rdfs:subClassOf schema:MonetaryAmount .
+
+:CompensatorySystem rdf:type owl:Class ;
+    rdfs:label "Compensatory System" ;
+    rdfs:comment "System for fair compensation." ;
+    rdfs:subClassOf schema:SoftwareApplication .
+
+# Ontology Properties
+
+:hasPreamble rdf:type owl:ObjectProperty ;
+    rdfs:label "Has Preamble" ;
+    rdfs:comment "Links license to its preamble." ;
+    rdfs:domain :License ;
+    rdfs:range :Preamble .
+
+:hasCopyrightSection rdf:type owl:ObjectProperty ;
+    rdfs:label "Has Copyright Section" ;
+    rdfs:domain :License ;
+    rdfs:range :CopyrightSection .
+
+:hasOpenDevelopmentSection rdf:type owl:ObjectProperty ;
+    rdfs:label "Has Open Development Section" ;
+    rdfs:domain :License ;
+    rdfs:range :OpenDevelopmentSection .
+
+:hasObligationCostsSection rdf:type owl:ObjectProperty ;
+    rdfs:label "Has Obligation Costs Section" ;
+    rdfs:domain :License ;
+    rdfs:range :ObligationCostsSection .
+
+:hasCompensatoryImplementationSection rdf:type owl:ObjectProperty ;
+    rdfs:label "Has Compensatory Implementation Section" ;
+    rdfs:domain :License ;
+    rdfs:range :CompensatoryImplementationSection .
+
+:hasExemptionsSection rdf:type owl:ObjectProperty ;
+    rdfs:label "Has Exemptions Section" ;
+    rdfs:domain :License ;
+    rdfs:range :ExemptionsSection .
+
+:hasMetadataSection rdf:type owl:ObjectProperty ;
+    rdfs:label "Has Metadata Section" ;
+    rdfs:domain :License ;
+    rdfs:range :MetadataSection .
+
+:hasNoWarrantySection rdf:type owl:ObjectProperty ;
+    rdfs:label "Has No Warranty Section" ;
+    rdfs:domain :License ;
+    rdfs:range :NoWarrantySection .
+
+:hasGoverningLawSection rdf:type owl:ObjectProperty ;
+    rdfs:label "Has Governing Law Section" ;
+    rdfs:domain :License ;
+    rdfs:range :GoverningLawSection .
+
+:appliesToWork rdf:type owl:ObjectProperty ;
+    rdfs:label "Applies To Work" ;
+    rdfs:comment "Links license to the work it governs." ;
+    rdfs:domain :License ;
+    rdfs:range :Work .
+
+:hasLicensor rdf:type owl:ObjectProperty ;
+    rdfs:label "Has Licensor" ;
+    rdfs:domain :License ;
+    rdfs:range :Licensor .
+
+:requiresCompensation rdf:type owl:ObjectProperty ;
+    rdfs:label "Requires Compensation" ;
+    rdfs:domain :License ;
+    rdfs:range :CompensatorySystem .
+
+:hasObligationCost rdf:type owl:ObjectProperty ;
+    rdfs:label "Has Obligation Cost" ;
+    rdfs:domain :Work ;
+    rdfs:range :ObligationCost .
+
+:version rdf:type owl:DatatypeProperty ;
+    rdfs:label "Version" ;
+    rdfs:domain :License ;
+    rdfs:range rdfs:Literal .
+
+:date rdf:type owl:DatatypeProperty ;
+    rdfs:label "Date" ;
+    rdfs:domain :License ;
+    rdfs:range rdfs:Literal .
+
+:intent rdf:type owl:DatatypeProperty ;
+    rdfs:label "Intent" ;
+    rdfs:domain :Preamble ;
+    rdfs:range rdfs:Literal .
+
+:principles rdf:type owl:DatatypeProperty ;
+    rdfs:label "Principles" ;
+    rdfs:domain :Preamble ;
+    rdfs:range rdfs:Literal .
+
+# Instance of the Specific License
+
+:HumanitarianEquityLicense rdf:type :CustomReservedLicense ;
+    dc:title "All Rights Reserved, Pending Compensatory Implementation" ;
+    :version "0.001-init" ;
+    :date "July 19, 2025" ;
+    :appliesToWork :HumanitarianICTWork ;
+    :hasLicensor :DefaultLicensor ;
+    :hasPreamble :LicensePreamble ;
+    :hasCopyrightSection :LicenseCopyright ;
+    :hasOpenDevelopmentSection :LicenseOpenDev ;
+    :hasObligationCostsSection :LicenseObligationCosts ;
+    :hasCompensatoryImplementationSection :LicenseCompensatory ;
+    :hasExemptionsSection :LicenseExemptions ;
+    :hasMetadataSection :LicenseMetadata ;
+    :hasNoWarrantySection :LicenseNoWarranty ;
+    :hasGoverningLawSection :LicenseGoverningLaw ;
+    odrl:permission [
+        odrl:action odrl:read ;
+        odrl:constraint [ odrl:purpose = "inspection" ] ;
+    odrl:prohibition [
+        odrl:action odrl:distribute, odrl:derive, odrl:use ;
+        odrl:constraint [ odrl:precondition = "compensation system not operational" ] ;
+    odrl:duty [
+        odrl:action :implementCompensation ;
+        odrl:consequence [ odrl:assigner = "release to permissive license" ] ] ;
+    rdfs:comment "RDF representation of the custom license." .
+
+:HumanitarianICTWork rdf:type :Work ;
+    schema:description "Humanitarian ICT systems, projects, works, and ecosystems." .
+
+:DefaultLicensor rdf:type :Licensor ;
+    foaf:name "[Your Name/Organization Name]" .
+
+:LicensePreamble rdf:type :Preamble ;
+    :intent "To define, track, and compensate costs for humanitarian ICT production." ;
+    :principles "Fair compensation, alignment with human rights, transition to open-source after compensation." .
+
+:LicenseCopyright rdf:type :CopyrightSection ;
+    rdfs:comment "All rights reserved; no grants beyond explicit." .
+
+:LicenseOpenDev rdf:type :OpenDevelopmentSection ;
+    rdfs:comment "Limited inspection rights; no redistribution or commercial use without compensation." .
+
+:LicenseObligationCosts rdf:type :ObligationCostsSection ;
+    rdfs:comment "Defines direct/indirect costs, compound multipliers." .
+
+:LicenseCompensatory rdf:type :CompensatoryImplementationSection ;
+    rdfs:comment "Blockchain-based system, release criteria (e.g., 80% fulfillment)." .
+
+:LicenseExemptions rdf:type :ExemptionsSection ;
+    rdfs:comment "Exemptions for open standards compliance, non-exploitative use." .
+
+:LicenseMetadata rdf:type :MetadataSection ;
+    rdfs:comment "Metadata files for costs, claims, RDF integration." .
+
+:LicenseNoWarranty rdf:type :NoWarrantySection ;
+    rdfs:comment "As-is, no warranties, disclaimer of liability." .
+
+:LicenseGoverningLaw rdf:type :GoverningLawSection ;
+    rdfs:comment "Contributor-elected jurisdictions, alignment with human rights." .

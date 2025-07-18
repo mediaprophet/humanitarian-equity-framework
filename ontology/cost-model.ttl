@@ -1,0 +1,38 @@
+@prefix rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# .
+@prefix rdfs: http://www.w3.org/2000/01/rdf-schema# .
+@prefix dc: http://purl.org/dc/elements/1.1/ .
+@prefix schema: http://schema.org/ .
+@prefix : http://example.org/humanitarian-equity-framework/ontology/cost-model# .
+
+:ObligationCost rdf:type rdfs:Class ;
+rdfs:label "Obligation Cost" ;
+rdfs:comment "Aggregated value of resources contributed, including unpaid efforts." ;
+rdfs:subClassOf schema:MonetaryAmount .
+
+:DirectCost rdf:type rdfs:Class ;
+rdfs:label "Direct Cost" ;
+rdfs:comment "Tangible expenses like hardware or services." ;
+rdfs:subClassOf :ObligationCost .
+
+:IndirectCost rdf:type rdfs:Class ;
+rdfs:label "Indirect Cost" ;
+rdfs:comment "Intangible contributions like time and expertise." ;
+rdfs:subClassOf :ObligationCost .
+
+:hasValue rdf:type rdf:Property ;
+rdfs:label "Has Value" ;
+rdfs:comment "Monetary or equivalent value of the cost." ;
+rdfs:domain :ObligationCost ;
+rdfs:range schema:MonetaryAmount .
+
+:compoundMultiplier rdf:type rdf:Property ;
+rdfs:label "Compound Multiplier" ;
+rdfs:comment "Multiplier applied for delayed compensation." ;
+rdfs:domain :ObligationCost ;
+rdfs:range rdfs:Literal .
+
+:valuationMetric rdf:type rdf:Property ;
+rdfs:label "Valuation Metric" ;
+rdfs:comment "Metric used for valuing the cost." ;
+rdfs:domain :IndirectCost ;
+rdfs:range rdfs:Literal .
