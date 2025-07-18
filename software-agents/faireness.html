@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fairness Evaluator Framework Specification</title>
+    <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove" async></script>
+    <script class="remove">
+        var respecConfig = {
+            specStatus: "unofficial",
+            shortName: "fairness-evaluator-framework",
+            title: "Fairness Evaluator Framework",
+            subtitle: "A Modular Framework for AI-Driven Legal Fairness Evaluation",
+            publishDate: "2025-07-19",
+            editors: [{
+                name: "Timothy Holborn",
+                company: "Web Civics",
+                url: "https://webcivics.org"
+            }, {
+                name: "Grok",
+                company: "xAI",
+                note: "AI Assistant",
+                url: "https://grok.x.ai"
+            }],
+            processVersion: 2023,
+            edDraftURI: "https://example.com/drafts/fairness-evaluator",
+            github: {
+                repoURL: "https://github.com/webcivics/fairness-evaluator",
+                branch: "main"
+            },
+            abstract: "This document specifies a framework for building and deploying a Fairness Evaluator AI model. The framework supports modular use-cases, RDF-based namespaces for precise contextual definitions, and integration with LLMs to evaluate unenforceable claims in agreements, enhancing decision-making and liability modeling.",
+            license: "cc-by",
+            logos: [{
+                src: "https://www.w3.org/Icons/w3c_home",
+                alt: "W3C",
+                height: 48,
+                width: 72,
+                url: "https://www.w3.org/"
+            }]
+        };
+    </script>
+</head>
+<body>
+    <section id="abstract">
+        <p>This specification outlines a modular framework for the Fairness Evaluator, an advanced AI model designed to analyze agreements for extraordinary or unenforceable claims based on legal principles. It aims to enhance situational awareness for legal entities, particularly natural persons, by supporting informed decision-making, liability considerations, and financial structuring. The framework incorporates RDF for semantic precision and supports various output formats suitable for LLM agents.</p>
+    </section>
+    <section id="sotd">
+        <p>This is an unofficial draft specification. It is intended for discussion and refinement within the Web Civics community and beyond.</p>
+    </section>
+    <section>
+        <h2>Introduction</h2>
+        <p>The Fairness Evaluator Framework addresses the need for AI-assisted evaluation of legal agreements to identify unenforceable clauses due to fundamental legal principles such as illegality, unconscionability, or violations of public policy. By providing a structured approach, this framework enables software agents (e.g., LLMs) to consider complex vectors including legal, ethical, economic, social, resolution, and temporal implications.</p>
+        <p>Building on prior framing documents and data structures, this specification defines a method to support 'modules'—self-contained use-case definitions—that can be processed alongside circumstantial contexts. RDF support ensures namespace specificity, allowing for unambiguous semantic linking.</p>
+        <p>This refined definition emphasizes modularity for extensibility, semantic web integration via RDF, and agent-friendly outputs. Modules act as knowledge graphs, enabling LLMs to reason over linked data for nuanced evaluations, incorporating research on digital slavery and related implications for modern agreements.</p>
+    </section>
+    <section>
+        <h2>Framework Overview</h2>
+        <p>The framework consists of core components:</p>
+        <ul>
+            <li><strong>Core Evaluator Engine</strong>: An AI model (e.g., LLM-based) that processes inputs against defined principles and vectors.</li>
+            <li><strong>Modules</strong>: Pluggable use-case definitions, each encapsulating specific contexts, principles, and evaluation logic.</li>
+            <li><strong>Data Structures</strong>: JSON/RDF schemas for principles, vectors, and outputs.</li>
+            <li><strong>Integration Layer</strong>: Supports RDF namespaces, input parsing, and output in formats like JSON-LD, Markdown-LD*, or Turtle.</li>
+        </ul>
+        <p>The evaluator operates in a pipeline: Input agreement text → Parse clauses → Match against modules/principles → Evaluate vectors → Generate report with implications.</p>
+    </section>
+    <section>
+        <h2>Modules and Use-Cases</h2>
+        <p>Modules are defined as RDF resources or JSON-LD documents, each representing a use-case (e.g., 'prohibition_of_slavery_in_contracts'). A module includes:</p>
+        <dl>
+            <dt>Namespace</dt>
+            <dd>A unique RDF namespace (e.g., http://example.org/ns/slavery#).</dd>
+            <dt>Context Documents</dt>
+            <dd>References to legal bases, examples, and variations.</dd>
+            <dt>Evaluation Logic</dt>
+            <dd>Prompt templates or rules for LLM processing.</dd>
+            <dt>Circumstantial Integration</dt>
+            <dd>Parameters for injecting real-time context (e.g., jurisdiction, party details).</dd>
+        </dl>
+        <p>Agents load modules dynamically, combining them for comprehensive evaluations. For instance, a contract analysis might invoke 'digital_slavery' and 'unconscionability' modules, processing implications from research on data alienation and behavioral control.</p>
+    </section>
+    <section>
+        <h2>RDF Support and Semantic Precision</h2>
+        <p>To ensure specificity, all key terms use RDF namespaces. For example:</p>
+        <pre><code>@prefix fe: &lt;http://example.org/fairness-evaluator#&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+
+fe:Principle rdf:type rdf:Class ;
+    rdfs:label "Legal Principle" .</code></pre>
+        <p>Outputs can be serialized in RDF/JSON (JSON-LD), allowing linked data integration. Markdown-LD* extends Markdown with embedded JSON-LD for human-readable yet machine-parseable reports, facilitating LLM ingestion.</p>
+    </section>
+    <section>
+        <h2>Data Structures</h2>
+        <p>The primary data structure is a JSON schema with RDF mappings:</p>
+        <pre><code>{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "namespace": { "type": "string" },
+    "description": { "type": "string" },
+    "legal_basis": { "type": "array", "items": { "type": "object" } },
+    // ... (as per previous examples)
+  }
+}</code></pre>
+        <p>For LLM compatibility, outputs default to JSON-LD, with options for Turtle or Markdown-LD* to balance readability and semantics.</p>
+    </section>
+    <section>
+        <h2>Implementation Guidelines</h2>
+        <p>Implementations should:</p>
+        <ol>
+            <li>Support loading RDF datasets for modules.</li>
+            <li>Use SPARQL for querying principles.</li>
+            <li>Generate reports balancing human readability and machine parsability.</li>
+            <li>Ensure bias mitigation in evaluations.</li>
+            <li>Incorporate research implications, such as digital slavery vectors, for holistic risk assessment.</li>
+        </ol>
+    </section>
+    <section id="conformance"></section>
+</body>
+</html>
