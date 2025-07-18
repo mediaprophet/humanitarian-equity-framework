@@ -1,0 +1,186 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <https://schema.org/> .
+@prefix project: <http://example.org/project/> .
+@prefix cost: <http://example.org/cost/> .
+@prefix rights: <http://example.org/rights/> .
+@prefix info: <http://example.org/infosphere/> .  # New namespace for infosphere-specific terms
+@prefix prov: <http://www.w3.org/ns/prov#> .  # For provenance and temporal context
+
+# Classes
+
+rights:Right a rdfs:Class ;
+  rdfs:label "Intellectual Property Right" ;
+  rdfs:comment "Base class for traditional and extended rights." .
+
+rights:CopyrightRight rdfs:subClassOf rights:Right ;
+  rdfs:label "Copyright" ;
+  rdfs:comment "Exclusive legal right to reproduce, distribute, and modify a work." .
+
+rights:PatentRight rdfs:subClassOf rights:Right ;
+  rdfs:label "Patent" ;
+  rdfs:comment "Exclusive right granted for an invention." .
+
+rights:TrademarkRight rdfs:subClassOf rights:Right ;  # Added as suggested
+  rdfs:label "Trademark" ;
+  rdfs:comment "Right to exclusive use of a brand identifier." .
+
+rights:DerivativeWorkRight rdfs:subClassOf rights:Right ;
+  rdfs:label "Derivative Work Right" ;
+  rdfs:comment "The right to create adaptations based on the original work." .
+
+rights:CommercialUseRight rdfs:subClassOf rights:Right ;
+  rdfs:label "Commercial Use Right" ;
+  rdfs:comment "The right to use a work for commercial purposes." .
+
+rights:DistributionRight rdfs:subClassOf rights:Right ;
+  rdfs:label "Distribution Right" ;
+  rdfs:comment "The right to distribute copies of the work." .
+
+rights:ModificationRight rdfs:subClassOf rights:Right ;
+  rdfs:label "Modification Right" ;
+  rdfs:comment "The right to modify the original work." .
+
+info:InfoRight rdfs:subClassOf rights:Right ;
+  rdfs:label "Infosphere Right" ;
+  rdfs:comment "Rights for informational entities, emphasizing ethical stewardship and human-centric ICT." .
+
+info:InfoAccessRight rdfs:subClassOf info:InfoRight ;
+  rdfs:label "Information Access Right" ;
+  rdfs:comment "Right to access knowledge in the infosphere, building on human rights to information." .
+
+info:InfoPrivacyRight rdfs:subClassOf info:InfoRight ;
+  rdfs:label "Informational Privacy Right" ;
+  rdfs:comment "Right to control personal data and reduce entropy in the infosphere." .
+
+info:ContributionRight rdfs:subClassOf info:InfoRight ;
+  rdfs:label "Contribution Right" ;
+  rdfs:comment "Contributor's right to attribution and compensation in knowledge informatics." .
+
+info:InfoObligation a rdfs:Class ;
+  rdfs:label "Infosphere Obligation" ;
+  rdfs:comment "Duties to foster infosphere growth and equity." .
+
+info:StewardshipDuty rdfs:subClassOf info:InfoObligation ;
+  rdfs:label "Stewardship Duty" ;
+  rdfs:comment "Duty to maintain informational integrity for consumers and contributors." .
+
+info:Inforg a rdfs:Class ;
+  rdfs:label "Informational Organism" ;
+  rdfs:comment "Entity in the infosphere (e.g., human, data, AI) with potential rights." .
+
+info:License a rdfs:Class ;
+  rdfs:label "License" ;
+  rdfs:comment "Formal agreement for infosphere rights management." .
+
+info:SemanticContract a rdfs:Class ;
+  rdfs:label "Semantic Contract" ;
+  rdfs:comment "Machine-readable contract for rights transfer and compensation." .
+
+# Properties
+
+rights:holdsRight a rdf:Property ;
+  rdfs:domain rdfs:Resource ;  # E.g., Work, Inforg, Contributor
+  rdfs:range rights:Right ;
+  rdfs:comment "Links an entity to the rights it holds." .
+
+rights:rightStatus a rdf:Property ;
+  rdfs:domain rights:Right ;
+  rdfs:range xsd:string ;  # e.g., "Retained", "Granted", "Revoked"
+  rdfs:comment "Current status of the right." .
+
+rights:grantCondition a rdf:Property ;
+  rdfs:domain rights:Right ;
+  rdfs:range xsd:string ;  # e.g., "Obligation Fulfillment", "Attribution Required"
+  rdfs:comment "Conditions for granting the right." .
+
+rights:grantDate a rdf:Property ;
+  rdfs:domain rights:Right ;
+  rdfs:range xsd:date ;
+  rdfs:comment "Date when the right was granted." .
+
+rights:revocationReason a rdf:Property ;
+  rdfs:domain rights:Right ;
+  rdfs:range xsd:string ;  # e.g., "Violation of Terms"
+  rdfs:comment "Reason for revocation." .
+
+info:hasInforgHolder a rdf:Property ;
+  rdfs:domain info:InfoRight ;
+  rdfs:range info:Inforg ;
+  rdfs:comment "Links right to inforg holder." .
+
+info:hasInforgDutyBearer a rdf:Property ;
+  rdfs:domain info:InfoObligation ;
+  rdfs:range info:Inforg ;
+  rdfs:comment "Links obligation to duty-bearer." .
+
+info:attributionRequired a rdf:Property ;
+  rdfs:domain info:ContributionRight ;
+  rdfs:range rdfs:Resource ;  # Subproperties for authorName, url, noticeText
+  rdfs:comment "Details for required attribution." .
+
+info:geographicRestriction a rdf:Property ;
+  rdfs:domain rights:Right ;
+  rdfs:range schema:Place ;
+  rdfs:comment "Geographic limits on the right." .
+
+info:linksToSmartContract a rdf:Property ;
+  rdfs:domain info:SemanticContract ;
+  rdfs:range xsd:anyURI ;
+  rdfs:comment "Link to blockchain smart contract." .
+
+info:compensationAmount a rdf:Property ;
+  rdfs:domain info:SemanticContract ;
+  rdfs:range xsd:decimal ;
+  rdfs:comment "Compensation amount in semantic contracts." .
+
+info:compensationTimeline a rdf:Property ;
+  rdfs:domain info:SemanticContract ;
+  rdfs:range xsd:duration ;
+  rdfs:comment "Timeline for compensation." .
+
+info:triggerEvent a rdf:Property ;
+  rdfs:domain info:SemanticContract ;
+  rdfs:range xsd:string ;
+  rdfs:comment "Event triggering contract (e.g., payment)." .
+
+# Provenance Integration (for temporal and agent context)
+# Use prov:wasDerivedFrom for tracking origins, e.g., of contributions
+
+# Example Instance Data
+
+project:MyTechProject rights:holdsRight rights:CopyrightRight ;
+  rights:rightStatus "Retained" ;
+  rights:grantCondition "All Rights Reserved per License Section 1" .
+
+project:MyTechProject rights:holdsRight rights:PatentRight ;
+  rights:rightStatus "Retained" .
+
+project:MyTechProject rights:holdsRight info:InfoAccessRight ;
+  rights:rightStatus "Granted" ;
+  rights:grantCondition "Obligation Fulfillment per License Section 4" ;
+  rights:grantDate "2025-07-19"^^xsd:date ;
+  info:geographicRestriction "Global" .
+
+project:AliceContributor rights:holdsRight info:ContributionRight ;
+  rights:rightStatus "Retained" ;
+  info:attributionRequired [ rdf:type rdfs:Resource ; schema:author "Alice" ; schema:url "http://alice.example.org" ; schema:text "Notice: Original code by Alice" ] ;
+  prov:wasDerivedFrom project:PreviousWork ;  # Provenance example
+  rights:grantCondition "Compensation via Semantic Contract" .
+
+project:MyTechProjectLicense a info:License ;
+  rights:holdsRight rights:CommercialUseRight ;
+  rights:rightStatus "Granted" ;
+  rights:grantCondition "Non-Commercial Use Only Until Compensation" ;
+  info:linksToSmartContract "https://blockchain.example/contract/123" .
+
+project:CompensationContract a info:SemanticContract ;
+  info:compensationAmount "100.00"^^xsd:decimal ;
+  info:compensationTimeline "P30D"^^xsd:duration ;  # 30 days
+  info:triggerEvent "Obligation Fulfillment" ;
+  rights:revocationReason "Violation of Terms" .
+
+project:MyTechProject info:hasInforgDutyBearer info:StewardshipDuty ;
+  rights:rightStatus "Retained" ;
+  rdfs:comment "Duty to reduce infosphere entropy for humanitarian ICT." .

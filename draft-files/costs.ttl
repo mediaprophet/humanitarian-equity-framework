@@ -1,0 +1,77 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .  # Using Schema.org for common properties
+@prefix project: <http://example.org/project/> # Your project's namespace - CHANGE THIS!
+@prefix cost: <http://example.org/cost/> # Namespace for cost-related terms
+
+# Classes (Types of things)
+
+project:Work a rdfs:Class ;
+    rdfs:label "Technology Project" .
+
+project:Contributor a rdfs:Class ;
+    rdfs:label "Project Contributor" .
+
+cost:ResourceContribution a rdfs:Class ;
+    rdfs:label "Resource Contribution";
+    rdfs:subClassOf project:Work.
+
+# Properties (Relationships between things)
+
+schema:contributor a rdf:Property ;
+    rdfs:domain project:Work ;
+    rdfs:range project:Contributor .
+
+cost:hasContribution a rdf:Property;
+    rdfs:domain project:Work;
+    rdfs:range cost:ResourceContribution.
+
+cost:contributionType a rdf:Property;
+    rdfs:domain cost:ResourceContribution;
+    rdfs:range rdfs:Literal. # e.g., "Time", "Energy", "Data", "Compute"
+
+cost:amount a rdf:Property ;
+    rdfs:domain cost:ResourceContribution ;
+    rdfs:range schema:MonetaryAmount .
+
+cost:currency a rdf:Property;
+    rdfs:domain schema:MonetaryAmount;
+    rdfs:range rdfs:Literal. #e.g., "USD", "ETH"
+
+cost:valuationMethod a rdf:Property ;
+    rdfs:domain cost:ResourceContribution ;
+    rdfs:range rdfs:Literal . # e.g., "Hourly Rate", "Fixed Price", "Market Value"
+
+cost:unpaidStatus a rdf:Property;
+    rdfs:domain cost:ResourceContribution;
+    rdfs:range rdfs:Literal.  #e.g., "Pending", "Partially Paid", "Fully Paid"
+
+cost:obligationMultiplier a rdf:Property ;
+    rdfs:domain project:Work ;
+    rdfs:range schema:Number . #The multiplier value
+
+schema:description a rdf:Property;
+    rdfs:domain rdfs:Resource;
+    rdfs:range rdfs:Literal.
+
+
+# Example Instance Data (Replace with your actual data)
+
+project:MyTechProject a project:Work ;
+  schema:contributor project:AliceContributor, project:BobOrganization ;
+  schema:description "This project aims to..." .
+
+project:AliceContributor a project:Contributor;
+    rdfs:label "Alice";
+    schema:email "alice@example.com".
+
+project:BobOrganization a project:Contributor;
+    rdfs:label "Bob's Organization".
+
+project:TimeContribution1 a cost:ResourceContribution ;
+  cost:hasContribution project:MyTechProject;
+  cost:contributionType "Time";
+  cost:amount "40"^^xsd:decimal ; # 40 hours
+  cost:currency "USD";
+  cost:valuationMethod "Hourly Rate";
+  cost:unpaidStatus "Pending".

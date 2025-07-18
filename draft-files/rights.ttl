@@ -1,0 +1,84 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix project: <http://example.org/project/> .
+@prefix cost: <http://example.org/cost/> .
+@prefix rights: <http://example.org/rights/> . # New namespace for rights-related terms
+
+# Classes
+
+rights:Right a rdfs:Class ;
+  rdfs:label "Intellectual Property Right" .
+
+rights:CopyrightRight a rights:Right;
+  rdfs:label "Copyright";
+  schema:description "Exclusive legal right to reproduce, distribute, and modify a work." .
+
+rights:PatentRight a rights:Right;
+  rdfs:label "Patent";
+  schema:description "Exclusive right granted for an invention." .
+
+rights:DerivativeWorkRight a rights:Right;
+  rdfs:label "Derivative Work Right";
+  schema:description "The right to create adaptations based on the original work." .
+
+rights:CommercialUseRight a rights:Right;
+  rdfs:label "Commercial Use Right";
+  schema:description "The right to use a work for commercial purposes." .
+
+rights:DistributionRight a rights:Right;
+  rdfs:label "Distribution Right";
+  schema:description "The right to distribute copies of the work." .
+
+rights:ModificationRight a rights:Right;
+  rdfs:label "Modification Right";
+  schema:description "The right to modify the original work." .
+
+# Properties
+
+rights:holdsRight a rdf:Property ;
+  rdfs:domain rdfs:Resource ; # Could be Work, Contributor, etc.
+  rdfs:range rights:Right .
+
+rights:rightStatus a rdf:Property;
+  rdfs:domain rights:Right;
+  rdfs:range rdfs:Literal; # e.g., "Retained", "Granted", "Revoked"
+  schema:description "The current status of the right." .
+
+rights:grantCondition a rdf:Property ;
+  rdfs:domain rights:Right ;
+  rdfs:range rdfs:Literal; #e.g., "Obligation Fulfillment", "Attribution Required", "Non-Commercial Use Only"
+  schema:description "Conditions under which the right is granted." .
+
+rights:grantDate a rdf:Property;
+    rdfs:domain rights:Right;
+    rdfs:range xsd:date. # Date when the right was granted/revoked
+
+rights:revocationReason a rdf:Property;
+  rdfs:domain rights:Right ;
+  rdfs:range rdfs:Literal . # e.g., "Violation of Terms", "Project Termination"
+
+# Example Instance Data (Illustrative)
+
+project:MyTechProject rights:holdsRight rights:CopyrightRight ;
+    rights:rightStatus "Retained".
+
+project:MyTechProject rights:holdsRight rights:PatentRight;
+    rights:rightStatus "Retained". #Assuming a patent application is pending/granted.
+
+# Example of granting limited rights after compensation
+project:MyTechProject rights:holdsRight rights:CommercialUseRight ;
+  rights:rightStatus "Granted";
+  rights:grantCondition "Obligation Fulfillment";
+  rights:grantDate "2024-12-31"^^xsd:date.
+
+# Example of derivative work restrictions
+project:MyTechProject rights:holdsRight rights:DerivativeWorkRight;
+    rights:rightStatus "Retained";
+    schema:description "Derivative works are permitted only under a specific license (e.g., Creative Commons BY-NC-SA 4.0) after obligation costs are met." .
+
+# Representing Rights for Contributions
+project:AliceContributor rights:holdsRight rights:CopyrightRight;
+  rights:rightStatus "Retained"; # Alice retains copyright to her contributions until transferred via compensation system
+  schema:description "Original code authored by Alice".
+

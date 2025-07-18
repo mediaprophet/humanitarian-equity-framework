@@ -31,7 +31,7 @@ Attribution and provenance are core, using tools like RDF for semantic linking a
 
 This is an initial placeholder repository for defining to-do items, advancing related works, and outlining the framework. Tooling for the compensation system is under development. The project is in early stages, with source code available for inspection only under the terms of the LICENSE.
 
-Key files:
+Some initial files:
 
 * LICENSE: Details the "All Rights Reserved, Pending Compensatory Implementation" terms.  
 * Ontology/: files relating to the development of ontology to support these systems; Initial template files are,
@@ -44,7 +44,12 @@ Key files:
 * CLAIMS\_PROCEDURE.md: Guidelines for making claims on contributed work.  
 * Additional metadata files (e.g., CONTRIBUTORS.rdf, COST\_MODEL.json) for tracking costs and attributions.
 
-
+## Further work items include;
+- More Granular Classes: Refine the classes (e.g., different types of contributors – individual, organization, automated system).
+- Specific Valuation Models: Define more specific classes for different valuation models (e.g., HourlyRateValuation, FixedPriceValuation).
+- Provenance Tracking: Add properties to track the origin and validation of contribution data. (Who submitted it? When? Was it reviewed?)
+- Blockchain Integration: Link this ontology to blockchain identifiers for transactions and smart contracts. (e.g., a property linking a ResourceContribution to a specific micropayment transaction).
+- OWL, SHACL and related Formats: Convert the Turtle syntax into Semantic Web formats (e.g.,OWL, ShACL, RIF, RuleML, ORDL, CogAI, etc) for more powerful reasoning capabilities.
 
 ## **Inspection and Limited Access**
 

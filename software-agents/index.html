@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Web Civics Ontology for Rights, Obligations, and Agent Acknowledgments</title>
+    <meta name="color-scheme" content="light dark">
+    <script class="remove">
+        var respecConfig = {
+            specStatus: "ED",
+            editors: [
+                {
+                    name: "Grok (xAI)",
+                    company: "xAI",
+                    companyURL: "https://x.ai"
+                }
+            ],
+            shortName: "web-civics-ontology",
+            publishDate: "2025-07-19",
+            edDraftURI: "https://example.org/web-civics-draft",
+            otherLinks: [
+                {
+                    key: "Unofficial Draft",
+                    data: [
+                        {
+                            value: "This is an unofficial draft for Web Civics, not affiliated with W3C or any standards body.",
+                            href: ""
+                        }
+                    ]
+                }
+            ],
+            license: "cc-by",
+            github: "example-org/web-civics"
+        };
+    </script>
+    <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"></script>
+</head>
+<body>
+    <section id="abstract">
+        <p>This document provides a draft specification for a Web Civics Ontology, defining RDF-based schemas for rights, obligations, software agents, and acknowledgments in digital content creation. It emphasizes human-centric (biosphere) priorities, integrates infosphere concepts, and addresses implications of AI tools like LLMs, including fee-based access and role distinctions. This is an unofficial draft intended to foster humanitarian ICT development.</p>
+    </section>
+    <section id="sotd">
+        <p>This is an Editor's Draft of an unofficial specification. It is not endorsed by any standards organization and is provided for discussion purposes only. Feedback is welcome via the associated GitHub repository.</p>
+    </section>
+    <section class="informative">
+        <h2>Introduction</h2>
+        <p>The Web Civics Ontology aims to provide a semantic framework for modeling rights and obligations in digital ecosystems, extending from human-centric views to broader infosphere considerations. It incorporates FOAF for agents, RDF for ontologies, and mechanisms for acknowledging AI contributions without implying ownership. Key factors include biosphere priorities (natural persons), work distinctions (e.g., 8-hour principles), and compensation via fees for AI access.</p>
+        <p>This ontology builds on existing standards like RDF, OWL, PROV-O, and FOAF, while introducing namespaces for infosphere, biosphere, AI agents, and acknowledgments.</p>
+    </section>
+    <section id="conformance">
+        <p>Conformance to this ontology is non-normative but recommended for systems implementing semantic rights management. Implementations SHOULD use RDF/OWL tools for validation and reasoning.</p>
+    </section>
+    <section>
+        <h2>Namespaces</h2>
+        <p>The following namespaces are defined:</p>
+        <ul>
+            <li><code>rights:</code> http://example.org/rights/ - For intellectual property and status.</li>
+            <li><code>info:</code> http://example.org/infosphere/ - For infosphere-specific rights and obligations.</li>
+            <li><code>bio:</code> http://example.org/biosphere/ - For biosphere-centric entities and labor rights.</li>
+            <li><code>ai:</code> http://example.org/ai/ - For software agents and resources.</li>
+            <li><code>ack:</code> http://example.org/acknowledgment/ - For work acknowledgments and role distinctions.</li>
+            <li>Standard: rdf:, rdfs:, xsd:, foaf:, prov:, schema:, dct:</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Core Classes and Properties</h2>
+        <section>
+            <h3>Human-Centric and Biosphere Classes</h3>
+            <p>Prioritizing natural persons:</p>
+            <pre class="turtle">
+@prefix bio: &lt;http://example.org/biosphere/&gt; .
+
+bio:BioEntity a rdfs:Class ;
+  rdfs:label "Biosphere Entity" ;
+  rdfs:comment "Living natural persons or entities as primary rights holders." .
+
+bio:Human rdfs:subClassOf bio:BioEntity ;
+  rdfs:label "Human" .
+
+bio:LaborRight rdfs:subClassOf info:InfoRight ;
+  rdfs:label "Labor Right" ;
+  rdfs:comment "Rights for human work, ensuring fair pay." .
+            </pre>
+        </section>
+        <section>
+            <h3>Infosphere Classes</h3>
+            <p>Informational rights and obligations:</p>
+            <pre class="turtle">
+@prefix info: &lt;http://example.org/infosphere/&gt; .
+
+info:InfoRight a rdfs:Class ;
+  rdfs:label "Infosphere Right" .
+
+info:InfoObligation a rdfs:Class ;
+  rdfs:label "Infosphere Obligation" .
+            </pre>
+        </section>
+        <section>
+            <h3>Software Agent Extensions (FOAF-Based)</h3>
+            <p>Modeling AI agents and user requirements:</p>
+            <pre class="turtle">
+@prefix ai: &lt;http://example.org/ai/&gt; .
+@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
+
+ai:SoftwareAgent rdfs:subClassOf foaf:Agent ;
+  rdfs:label "Software Agent" .
+
+ai:LLM rdfs:subClassOf ai:SoftwareAgent ;
+  rdfs:label "Large Language Model" .
+
+ai:requiresPayment a rdf:Property ;
+  rdfs:range xsd:decimal ;
+  rdfs:comment "Payment for access, fulfilling compensation." .
+            </pre>
+        </section>
+        <section>
+            <h3>Acknowledgment and Role Distinction</h3>
+            <p>Distinguishing human authorship from AI facilitation:</p>
+            <pre class="turtle">
+@prefix ack: &lt;http://example.org/acknowledgment/&gt; .
+
+ack:AcknowledgedWork a rdfs:Class ;
+  rdfs:label "Acknowledged Work" .
+
+ack:CreationRole a rdfs:Class ;
+  rdfs:label "Creation Role" .
+
+ack:AIGenerator rdfs:subClassOf ack:CreationRole ;
+  rdfs:label "AI Generator" ;
+  rdfs:comment "AI as tool; alternatives: Content Synthesizer, Generative Assistant." .
+
+ack:createdWithAgent a rdf:Property ;
+  rdfs:range ai:SoftwareAgent .
+            </pre>
+            <p>Fee fulfillment triggers rights:</p>
+            <pre class="turtle">
+ack:feeFulfilled a rdf:Property ;
+  rdfs:range xsd:boolean .
+            </pre>
+        </section>
+    </section>
+    <section>
+        <h2>Examples</h2>
+        <p>Example instance for AI-assisted work:</p>
+        <pre class="turtle">
+project:UserGeneratedContent a ack:AcknowledgedWork ;
+  ack:createdWithAgent project:Grok ;
+  ack:distinguishesRole ack:HumanAuthor, ack:AIGenerator ;
+  rights:ownershipRetainedBy project:HumanUser ;
+  ack:feeFulfilled true .
+        </pre>
+    </section>
+    <section id="references" class="appendix">
+        <h2>References</h2>
+        <p>Normative: RDF 1.1, OWL 2, FOAF. Informative: UDHR, Floridi's Information Ethics.</p>
+    </section>
+</body>
+</html>
